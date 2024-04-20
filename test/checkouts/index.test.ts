@@ -18,8 +18,9 @@ beforeAll(async () => {
   lemonSqueezySetup({
     apiKey: import.meta.env.LEMON_SQUEEZY_API_KEY,
   });
-  const { data } = await listVariants();
-  variantId = data!.data[0].id;
+  const { error, data } = await listVariants();
+  if (error) return;
+  variantId = data.data[0].id;
 });
 
 describe("Create a checkout", () => {
@@ -127,6 +128,7 @@ describe("Create a checkout", () => {
       logo,
       desc,
       discount,
+      skip_trial,
       quantity,
       dark,
       subscription_preview,
@@ -138,6 +140,7 @@ describe("Create a checkout", () => {
       logo,
       desc,
       discount,
+      skip_trial,
       quantity,
       dark,
       subscription_preview,
@@ -242,6 +245,7 @@ describe("Create a checkout", () => {
         logo: true,
         desc: true,
         dark: true,
+        skipTrial: true,
         discount: false,
         buttonColor: "#ccc",
         subscriptionPreview: true,
@@ -367,6 +371,7 @@ describe("Create a checkout", () => {
       logo,
       desc,
       discount,
+      skip_trial,
       quantity,
       dark,
       subscription_preview,
@@ -378,6 +383,7 @@ describe("Create a checkout", () => {
       logo,
       desc,
       discount,
+      skip_trial,
       quantity,
       dark,
       subscription_preview,
